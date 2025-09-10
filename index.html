@@ -1,0 +1,843 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limitless IT Solutions | Fast, Remote, Affordable IT Help</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Fallback background */
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Gradient & Particle Background */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            animation: gradient-animation 20s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 25s infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(calc(var(--x-end) * 1vw)); opacity: 0; }
+        }
+
+        /* New Techie Objects Styling */
+        .tech-object {
+            position: absolute;
+            color: rgba(59, 130, 246, 0.2);
+            font-family: 'monospace';
+            font-weight: bold;
+            animation: drift 40s infinite linear;
+            opacity: 0;
+            text-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(-10vw); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateX(110vw); opacity: 0; }
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link.active {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+        
+        /* Glassmorphism Classes */
+        .glass-header {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        
+        .glass-card .service-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 45px 0 rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-card:hover .service-icon {
+             transform: scale(1.1) rotate(-5deg);
+        }
+
+
+        /* Text shadow for readability */
+        h1, h2, h3 {
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* CTA Button Glow */
+        .cta-button {
+             box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 25px rgba(59, 130, 246, 0.3);
+             animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 25px rgba(59, 130, 246, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.7), 0 0 40px rgba(59, 130, 246, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 25px rgba(59, 130, 246, 0.3); }
+        }
+
+        /* Typing Animation */
+        .typing-container { min-height: 84px; }
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Testimonial Slider */
+        .testimonial-slider { position: relative; overflow: hidden; }
+        .testimonial-slide { min-width: 100%; transition: transform 0.5s ease-in-out; }
+        .slider-container { display: flex; }
+    </style>
+</head>
+<body class="text-gray-200">
+    <div class="background-container">
+        <div class="particles" id="particles-container"></div>
+    </div>
+    <!-- Header & Navigation -->
+    <header class="glass-header sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3" data-page="home">
+                 <!-- Enhanced Tech Logo -->
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#67e8f9"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                        <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                        </filter>
+                    </defs>
+                    <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0.5, 0.5)"/>
+                    <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="12" r="2.5" fill="url(#logoGradient)" filter="url(#logoGlow)"/>
+                    <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
+                </svg>
+                <span class="text-xl font-bold text-white hidden sm:inline-block">Limitless IT Solutions</span>
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#" class="nav-link text-gray-300 hover:text-white border-b-2 border-transparent transition" data-page="home">Home</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-white border-b-2 border-transparent transition" data-page="services">Services</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-white border-b-2 border-transparent transition" data-page="about">About Me</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-white border-b-2 border-transparent transition" data-page="testimonials">Testimonials</a>
+                <a href="#" class="nav-link text-gray-300 hover:text-white border-b-2 border-transparent transition" data-page="faq">FAQ</a>
+                <a href="#" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition transform hover:scale-105" data-page="contact">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <a href="#" class="block py-3 px-6 text-sm text-gray-200 hover:bg-white/10" data-page="home">Home</a>
+            <a href="#" class="block py-3 px-6 text-sm text-gray-200 hover:bg-white/10" data-page="services">Services</a>
+            <a href="#" class="block py-3 px-6 text-sm text-gray-200 hover:bg-white/10" data-page="about">About Me</a>
+            <a href="#" class="block py-3 px-6 text-sm text-gray-200 hover:bg-white/10" data-page="testimonials">Testimonials</a>
+            <a href="#" class="block py-3 px-6 text-sm text-gray-200 hover:bg-white/10" data-page="faq">FAQ</a>
+            <a href="#" class="block py-3 px-6 text-sm text-gray-200 hover:bg-white/10" data-page="contact">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Home Page -->
+        <section id="home" class="section active text-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex justify-center mb-8">
+                     <!-- Enhanced Tech Logo -->
+                     <svg class="w-24 h-24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGradientLg" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#67e8f9"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                            <filter id="logoGlowLg" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                            </filter>
+                        </defs>
+                        <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0.5, 0.5)"/>
+                        <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="url(#logoGradientLg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="2.5" fill="url(#logoGradientLg)" filter="url(#logoGlowLg)"/>
+                        <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
+                    </svg>
+                </div>
+                <div class="typing-container">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight"><span id="typed"></span></h1>
+                </div>
+                <p class="text-lg md:text-xl text-gray-300 mb-8">Fast, remote, and affordable solutions for all your tech problems. Stop stressing over your devices and let an expert help.</p>
+                <button class="cta-button bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-700 transition transform hover:scale-105" data-page="contact">
+                    Book a Free Consultation
+                </button>
+            </div>
+            <!-- Animated Stats Section -->
+            <div id="stats-section" class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+                <div class="glass-card p-6 text-center">
+                    <h3 class="text-4xl font-extrabold" data-target="150">0</h3>
+                    <p class="text-gray-300 mt-2">Happy Clients</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <h3 class="text-4xl font-extrabold" data-target="300">0</h3>
+                    <p class="text-gray-300 mt-2">Projects Completed</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <h3 class="text-4xl font-extrabold" data-target="5">0</h3>
+                    <p class="text-gray-300 mt-2">Years of Experience</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Page -->
+        <section id="services" class="section">
+             <h2 class="text-4xl font-extrabold text-white text-center mb-10">Our Comprehensive IT Solutions</h2>
+            <p class="text-center text-lg text-gray-300 max-w-3xl mx-auto mb-16">We offer a wide range of services to meet your home and business technology needs. From remote troubleshooting to on-site installations, we provide solutions tailored to you.</p>
+
+            <!-- Digital Presence & Web Services -->
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold text-white mb-8 border-b-2 border-blue-500/50 pb-3">Digital Presence & Web Services</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Website Development</h3>
+                        <p class="text-gray-300">Get a stunning, modern, and responsive website that looks great on all devices and effectively represents your brand online.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Search Engine Optimization (SEO)</h3>
+                        <p class="text-gray-300">Increase your visibility on search engines like Google. We optimize your site to attract more organic traffic and potential customers.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c.51 0 .962-.343 1.087-.835l.383-1.437M7.5 14.25L5.106 5.165A2.25 2.25 0 002.82 3H2.25" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">E-commerce Solutions</h3>
+                        <p class="text-gray-300">Ready to sell online? We build secure and user-friendly e-commerce platforms to help you sell your products or services to the world.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Professional Email Setup</h3>
+                        <p class="text-gray-300">Build credibility with a professional email address (e.g., yourname@yourbusiness.com). We'll set up and configure it for you.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remote & Core Services -->
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold text-white mb-8 border-b-2 border-blue-500/50 pb-3">Remote Support & Personal IT</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-1.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Remote Troubleshooting</h3>
+                        <p class="text-gray-300">Quickly fix software glitches, connectivity issues, or device errors without leaving your home.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Network Setup</h3>
+                        <p class="text-gray-300">Perfect Wi-Fi for your home or small office. Router configuration and optimization for peak performance.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                         <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-1.621-.621A3 3 0 0115 18.257V17.25m-6-12v-1.5a2.25 2.25 0 012.25-2.25h3.75a2.25 2.25 0 012.25 2.25v1.5m-6 0h6m-6 0a2.25 2.25 0 00-2.25 2.25v3.75a2.25 2.25 0 002.25 2.25h6a2.25 2.25 0 002.25-2.25v-3.75a2.25 2.25 0 00-2.25-2.25h-6z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Device Configuration</h3>
+                        <p class="text-gray-300">We handle the complete setup for your new devices. This includes printers, webcams, phones, and laptops, ensuring they are properly connected, updated, and ready to use.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Data Backup & Cloud Sync</h3>
+                        <p class="text-gray-300">Protect your precious photos and important documents. I'll set up automated cloud backups to services like Google Drive, OneDrive, or Dropbox.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.623 0-1.332-.268-2.62-.744-3.752A9.753 9.753 0 0012 2.25c-2.472 0-4.786.954-6.522 2.518z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Advanced Virus Removal</h3>
+                        <p class="text-gray-300">A dedicated emergency service for heavily infected computers, including steps to secure them against future attacks.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Password Manager Setup</h3>
+                        <p class="text-gray-300">I'll help you choose, set up, and learn how to use a secure password manager to dramatically improve your online security.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- On-Site & Business Solutions Section -->
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold text-white mb-8 border-b-2 border-blue-500/50 pb-3">On-Site & Business Solutions</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                     <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 21z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Server Room & Rack Setup</h3>
+                        <p class="text-gray-300">Organized and efficient server room solutions. I can build, clean up, and organize server racks for optimal airflow and accessibility.</p>
+                    </div>
+                     <div class="glass-card p-6">
+                       <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 16.5V21m3.75-18v1.5m0 16.5V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 7.5v10.5a2.25 2.25 0 002.25 2.25z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Fiber Optic Services</h3>
+                        <p class="text-gray-300">High-speed fiber optic cable termination, splicing, and testing for homes and businesses that demand the fastest internet connections available.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.658-.463 1.243-1.117 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.117 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Business Networking & Firewall</h3>
+                        <p class="text-gray-300">Secure your business with professional network design, switch configuration, and firewall setup to protect your data from external threats.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.03 1.122 0 1.131.094 1.976 1.057 1.976 2.192V7.5m-9 1.5h9M4.5 12H19.5m-15 3h15m-15 3h15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Hardware Installation & Upgrades</h3>
+                        <p class="text-gray-300">Boost productivity with on-site installations of RAM, SSDs, graphics cards, and other critical components for desktops and servers.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 013.375-3.375h9.75a3.375 3.375 0 013.375 3.375v1.875m-17.25 4.5h16.5M5.625 13.5v-1.875a3.375 3.375 0 013.375-3.375h5.25a3.375 3.375 0 013.375 3.375v1.875" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Office IT Relocation & Setup</h3>
+                        <p class="text-gray-300">Moving offices? We offer seamless IT transition, including disconnection, transport, and complete re-installation of your entire tech infrastructure.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-1.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Conference Room A/V Setup</h3>
+                        <p class="text-gray-300">Modernize your meeting rooms with installation of large-screen displays, projectors, and integrated video conferencing systems.</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <svg class="w-12 h-12 text-blue-400 mb-4 service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <h3 class="text-xl font-semibold text-white mb-2">Point-of-Sale (POS) Systems</h3>
+                        <p class="text-gray-300">For retail and hospitality, we provide full on-site setup of POS terminals, receipt printers, cash drawers, and barcode scanners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action for Quote -->
+            <div class="mt-20 text-center glass-card p-8">
+                <h3 class="text-2xl font-bold text-white mb-4">Ready to Solve Your Tech Problems?</h3>
+                <p class="text-gray-300 mb-6 max-w-xl mx-auto">Since every project is unique, we provide personalized quotes to ensure you get the best value. Contact us today for a free, no-obligation consultation.</p>
+                <button class="cta-button bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-700 transition transform hover:scale-105" data-page="contact">
+                    Request a Custom Quote
+                </button>
+            </div>
+        </section>
+
+        <!-- About Me Page -->
+        <section id="about" class="section">
+             <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-extrabold text-white text-center mb-10">About Me</h2>
+                <div class="glass-card p-8 flex flex-col md:flex-row items-center gap-8">
+                    <img src="https://placehold.co/200x200/e2e8f0/64748b?text=Rahat" alt="Rahat - Founder of Limitless IT Solutions" class="rounded-full w-48 h-48 object-cover flex-shrink-0 border-4 border-white/20">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Hello, I'm Rahat.</h3>
+                        <p class="text-gray-300 mb-4">With a strong background in telecom and deskside IT support, I've spent years helping people navigate the complexities of technology. I've seen firsthand how frustrating a misbehaving device or a slow network can be, and I'm passionate about providing solutions that are not only effective but also easy to understand.</p>
+                        <p class="text-gray-200 font-semibold italic mb-4">My mission is simple: to help you stay connected and stress-free by making technology work for you, not against you.</p>
+                        <p class="text-gray-300">Based in Brampton, I'm proud to serve clients across the GTA with both remote and on-site support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Page -->
+        <section id="testimonials" class="section">
+            <h2 class="text-4xl font-extrabold text-white text-center mb-10">What My Clients Say</h2>
+            <div class="testimonial-slider max-w-3xl mx-auto">
+                <div class="slider-container">
+                    <div class="testimonial-slide flex-shrink-0 w-full">
+                        <div class="glass-card p-8">
+                            <p class="text-gray-300 italic mb-6 text-lg">"Rahat was a lifesaver! My Wi-Fi was constantly dropping, and he fixed it in under an hour remotely. I've had zero issues since. Highly recommend!"</p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/50x50/e2e8f0/64748b?text=JS" class="rounded-full w-12 h-12 mr-4 border-2 border-white/20" alt="Client Jane Smith">
+                                <div>
+                                    <p class="font-semibold text-white">Jane S.</p>
+                                    <p class="text-gray-400 text-sm">Home Office User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide flex-shrink-0 w-full">
+                        <div class="glass-card p-8">
+                            <p class="text-gray-300 italic mb-6 text-lg">"I'm not very tech-savvy, and Rahat was incredibly patient while setting up my new laptop and printer. He explained everything clearly. Fantastic service!"</p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/50x50/e2e8f0/64748b?text=MD" class="rounded-full w-12 h-12 mr-4 border-2 border-white/20" alt="Client Mike D.">
+                                <div>
+                                    <p class="font-semibold text-white">Mike D.</p>
+                                    <p class="text-gray-400 text-sm">Small Business Owner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="testimonial-slide flex-shrink-0 w-full">
+                        <div class="glass-card p-8">
+                            <p class="text-gray-300 italic mb-6 text-lg">"Fast, professional, and affordable. My computer was running so slowly, and now it feels brand new. I'll definitely be calling Rahat for any future tech issues."</p>
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/50x50/e2e8f0/64748b?text=AS" class="rounded-full w-12 h-12 mr-4 border-2 border-white/20" alt="Client Anna S.">
+                                <div>
+                                    <p class="font-semibold text-white">Anna S.</p>
+                                    <p class="text-gray-400 text-sm">Student</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq" class="section">
+            <h2 class="text-4xl font-extrabold text-white text-center mb-10">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="glass-card p-6">
+                    <h3 class="font-semibold text-lg text-white mb-2">How does remote support work?</h3>
+                    <p class="text-gray-300">It's simple and secure! I use a trusted remote desktop application (like TeamViewer or AnyDesk). You'll download a small program that gives me one-time, secure access to your computer. You can see everything I'm doing on your screen, and you can end the session at any time. Once we're done, I can't access your computer again without your permission.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <h3 class="font-semibold text-lg text-white mb-2">Is my data safe and private?</h3>
+                    <p class="text-gray-300">Absolutely. Your privacy is my top priority. I only access the parts of your system necessary to fix the issue. The remote connection is encrypted, and I will never access, copy, or look at your personal files unless you specifically ask me to for data recovery purposes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="section">
+            <h2 class="text-4xl font-extrabold text-white text-center mb-10">Get in Touch</h2>
+
+            <!-- Direct Contact Info -->
+            <div class="max-w-xl mx-auto glass-card p-8 mb-12">
+                <h3 class="text-2xl font-bold text-white text-center mb-6">Direct Contact Information</h3>
+                <div class="space-y-4 text-center text-gray-300">
+                    <div class="flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-400 flex-shrink-0">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                        <div>
+                            <a href="tel:4379741444" class="hover:text-white transition">(437) 974-1444</a> / 
+                            <a href="tel:5198082706" class="hover:text-white transition">(519) 808-2706</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-400 flex-shrink-0">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                        <a href="https://www.google.com/maps/search/?api=1&query=30+Shore+Breeze+Drive,+Toronto,+M8V0J1" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">
+                            30 Shore Breeze Drive, Toronto, M8V 0J1
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gemini AI Troubleshooter -->
+            <div class="max-w-xl mx-auto glass-card p-6 mb-12 border-blue-400 border-t-2">
+                <h3 class="text-2xl font-bold text-white text-center mb-4 flex items-center justify-center gap-2">
+                    <span class="text-2xl">✨</span>
+                    Run a diagnostic
+                </h3>
+                <p class="text-center text-gray-300 mb-6">Not sure what's wrong? Describe your problem below and our AI assistant will provide a preliminary diagnosis and suggest a service plan.</p>
+                
+                <div id="ai-troubleshooter">
+                    <div class="mb-6">
+                        <label for="ai-message" class="block text-gray-200 font-semibold mb-2">Describe your tech issue here:</label>
+                        <textarea id="ai-message" name="ai-message" rows="5" class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all bg-white/5 text-white placeholder-gray-400"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button id="get-diagnosis-btn" class="cta-button bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition transform hover:scale-105">Get AI Diagnosis</button>
+                    </div>
+                </div>
+                
+                <!-- AI Response Area -->
+                <div id="ai-response-area" class="mt-6 hidden">
+                    <div id="ai-loader" class="flex justify-center items-center my-4">
+                        <svg class="animate-spin h-8 w-8 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </div>
+                    <div id="ai-result" class="bg-white/5 p-6 rounded-lg border border-white/20 text-gray-200 space-y-4"></div>
+                </div>
+            </div>
+
+            <div class="max-w-xl mx-auto glass-card p-8">
+                <div id="form-content">
+                    <p class="text-center text-gray-300 mb-6">For direct inquiries or to book a service, please fill out the form below or email me directly. I'll get back to you within 24 hours.</p>
+                    <form id="contact-form" action="https://formspree.io/f/xwpnyapk" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-200 font-semibold mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/5 text-white" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-200 font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/5 text-white" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-200 font-semibold mb-2">How can I help you?</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/5 text-white placeholder-gray-400" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="cta-button bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition transform hover:scale-105">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                 <div id="form-success" class="hidden text-center">
+                    <h3 class="text-2xl font-bold text-white mb-4">Thank You!</h3>
+                    <p class="text-gray-300">Your message has been sent successfully. I'll get back to you shortly.</p>
+                </div>
+                <div id="form-error" class="hidden text-center">
+                    <h3 class="text-2xl font-bold text-red-400 mb-4">Oops! Something Went Wrong.</h3>
+                    <p class="text-gray-300">Your message could not be sent. Please try again or email me directly.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="mt-12 border-t border-white/10">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-400">
+             <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-4">
+                 <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                    <span><a href="tel:4379741444" class="hover:text-white transition">(437) 974-1444</a> / <a href="tel:5198082706" class="hover:text-white transition">(519) 808-2706</a></span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-blue-400">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>
+                    <a href="https://www.google.com/maps/search/?api=1&query=30+Shore+Breeze+Drive,+Toronto,+M8V0J1" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">
+                        30 Shore Breeze Drive, Toronto, M8V 0J1
+                    </a>
+                </div>
+            </div>
+            <p>&copy; 2025 Limitless IT Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('particles-container');
+            if (container) {
+                // Floating particles (vertical)
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.animationDelay = `${Math.random() * -25}s`;
+                    particle.style.setProperty('--x-end', (Math.random() - 0.5) * 20);
+                    container.appendChild(particle);
+                }
+
+                // Drifting tech objects (horizontal)
+                const techChars = ['0', '1', '{', '}', '/', '<', '>', '#', ':', ';'];
+                for (let i = 0; i < 30; i++) {
+                    const techObj = document.createElement('div');
+                    techObj.classList.add('tech-object');
+                    techObj.innerText = techChars[Math.floor(Math.random() * techChars.length)];
+                    techObj.style.top = `${Math.random() * 100}vh`;
+                    techObj.style.fontSize = `${Math.random() * 15 + 10}px`;
+                    const duration = Math.random() * 30 + 20; // 20 to 50 seconds
+                    techObj.style.animationDuration = `${duration}s`;
+                    techObj.style.animationDelay = `${Math.random() * -duration}s`;
+                    container.appendChild(techObj);
+                }
+            }
+
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const allLinks = document.querySelectorAll('a[data-page], button[data-page]');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            let typed;
+            let statsObserver;
+
+            function showPage(pageId) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.getElementById(pageId);
+                if (targetSection) {
+                    setTimeout(() => {
+                        targetSection.classList.add('active');
+                    }, 50); 
+                }
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === pageId);
+                });
+
+                mobileMenu.classList.add('hidden');
+                window.scrollTo(0, 0);
+
+                if (pageId === 'home') {
+                    initTypingAnimation();
+                    observeStats();
+                } else {
+                    if (typed) {
+                        typed.destroy();
+                    }
+                }
+            }
+
+            function initTypingAnimation() {
+                if (document.getElementById('typed')) {
+                     typed = new Typed('#typed', {
+                        strings: ['Solving Slow Wi-Fi.', 'Securing Your Network.', 'Fixing Device Headaches.', 'Your Tech Support Solution.'],
+                        typeSpeed: 50,
+                        backSpeed: 30,
+                        backDelay: 2000,
+                        loop: true
+                    });
+                }
+            }
+
+            showPage('home');
+
+            allLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showPage(this.dataset.page);
+                });
+            });
+
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            // Animated Stats Counter
+            function animateStats(element) {
+                const target = +element.dataset.target;
+                element.innerText = '0'; // Reset for re-animation
+                let current = 0;
+                const increment = target / 100;
+
+                const updateCount = () => {
+                    if (current < target) {
+                        current += increment;
+                        element.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        element.innerText = target;
+                    }
+                };
+                updateCount();
+            }
+            
+            function observeStats() {
+                const statsSection = document.getElementById('stats-section');
+                if (!statsSection) return;
+
+                statsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.querySelectorAll('[data-target]').forEach(el => {
+                                animateStats(el);
+                            });
+                            statsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statsObserver.observe(statsSection);
+            }
+
+            // Testimonial Slider
+            const slider = document.querySelector('.slider-container');
+            if(slider) {
+                const slides = Array.from(slider.children);
+                let currentIndex = 0;
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                }, 5000);
+            }
+
+            // Gemini AI Troubleshooter Logic
+            const getDiagnosisBtn = document.getElementById('get-diagnosis-btn');
+            const aiMessageInput = document.getElementById('ai-message');
+            const aiResponseArea = document.getElementById('ai-response-area');
+            const aiLoader = document.getElementById('ai-loader');
+            const aiResult = document.getElementById('ai-result');
+
+            getDiagnosisBtn.addEventListener('click', async () => {
+                const userQuery = aiMessageInput.value.trim();
+                if (!userQuery) {
+                    aiMessageInput.classList.add('border-red-500', 'focus:ring-red-500');
+                    aiMessageInput.placeholder = 'Please describe your issue first!';
+                    setTimeout(() => {
+                       aiMessageInput.classList.remove('border-red-500', 'focus:ring-red-500');
+                       aiMessageInput.placeholder = "";
+                    }, 3000);
+                    return;
+                }
+
+                aiResponseArea.classList.remove('hidden');
+                aiLoader.classList.remove('hidden');
+                aiResult.classList.add('hidden');
+                aiResult.innerHTML = '';
+
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const systemPrompt = `You are an expert IT support diagnostician for 'Limitless IT Solutions'. Your goal is to provide a helpful preliminary analysis of a user's technical problem. Do not give advice that could cause data loss or damage hardware, like reformatting a drive or opening a device. Always prioritize user safety and data integrity. Based on the user's problem description, provide your response in three distinct sections: 1. **Potential Causes:** Briefly list 2-3 likely reasons for the issue in simple terms. 2. **Simple Steps to Try:** Suggest 1-2 safe, basic troubleshooting steps a non-technical user can perform (e.g., restarting the device, checking cable connections, closing unused applications). 3. **Recommended Service:** Based on the problem, recommend one of our service packages ('Single Fix', 'Tech Tune-Up', or 'Monthly Support') and briefly explain why it's the best fit. Structure your output clearly. Use headings for each section in bold.`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                let attempt = 0;
+                const maxAttempts = 5;
+                let delay = 1000;
+
+                while (attempt < maxAttempts) {
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        const result = await response.json();
+                        const candidate = result.candidates?.[0];
+                        if (candidate?.content?.parts?.[0]?.text) {
+                            const generatedText = candidate.content.parts[0].text;
+                            const formattedText = generatedText
+                                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')
+                                .replace(/\n/g, '<br>');
+                            aiResult.innerHTML = formattedText;
+                            aiLoader.classList.add('hidden');
+                            aiResult.classList.remove('hidden');
+                            return;
+                        } else {
+                            throw new Error('Unexpected response structure from API.');
+                        }
+                    } catch (error) {
+                        console.error(`Attempt ${attempt + 1} failed:`, error);
+                        attempt++;
+                        if (attempt >= maxAttempts) {
+                            aiResult.innerHTML = '<p class="text-red-400">Sorry, something went wrong. The AI assistant is currently unavailable. Please use the contact form below to get in touch.</p>';
+                            aiLoader.classList.add('hidden');
+                            aiResult.classList.remove('hidden');
+                        } else {
+                            await new Promise(res => setTimeout(res, delay));
+                            delay *= 2;
+                        }
+                    }
+                }
+            });
+
+             // Contact Form AJAX Submission
+            const contactForm = document.getElementById('contact-form');
+            const formContent = document.getElementById('form-content');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const data = new FormData(form);
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        formContent.classList.add('hidden');
+                        formSuccess.classList.remove('hidden');
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed on server.');
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    formContent.classList.add('hidden');
+                    formError.classList.remove('hidden');
+                } finally {
+                     // In this logic, the button is part of the hidden form, so we don't need to re-enable it.
+                     // If we had a "try again" button, we would re-enable the main one here.
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
