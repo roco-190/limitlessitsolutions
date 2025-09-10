@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,7 +167,7 @@
     <header class="glass-header sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3" data-page="home">
-                 <!-- Enhanced Tech Logo -->
+                 <!-- Enhanced Tech Logo with Status Lights -->
                 <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
@@ -178,6 +180,11 @@
                     </defs>
                     <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0.5, 0.5)"/>
                     <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- Status Lights -->
+                    <circle cx="8" cy="7" r="1" fill="#22c55e" filter="url(#logoGlow)"/>
+                    <circle cx="12" cy="7.5" r="1" fill="#3b82f6" filter="url(#logoGlow)"/>
+                    <circle cx="16" cy="7" r="1" fill="#f59e0b" filter="url(#logoGlow)"/>
+                    <!-- Central Node -->
                     <circle cx="12" cy="12" r="2.5" fill="url(#logoGradient)" filter="url(#logoGlow)"/>
                     <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
                 </svg>
@@ -216,7 +223,7 @@
         <section id="home" class="section active text-center">
             <div class="max-w-4xl mx-auto">
                 <div class="flex justify-center mb-8">
-                     <!-- Enhanced Tech Logo -->
+                     <!-- Enhanced Tech Logo with Status Lights -->
                      <svg class="w-24 h-24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="logoGradientLg" x1="0" y1="0" x2="1" y2="1">
@@ -224,11 +231,16 @@
                                 <stop offset="100%" stop-color="#3b82f6"/>
                             </linearGradient>
                             <filter id="logoGlowLg" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                             </filter>
                         </defs>
                         <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0.5, 0.5)"/>
                         <path d="M3 12L8 7L12 11L16 7L21 12L16 17L12 13L8 17L3 12Z" stroke="url(#logoGradientLg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Status Lights -->
+                        <circle cx="8" cy="7" r="1" fill="#22c55e" filter="url(#logoGlowLg)"/>
+                        <circle cx="12" cy="7.5" r="1" fill="#3b82f6" filter="url(#logoGlowLg)"/>
+                        <circle cx="16" cy="7" r="1" fill="#f59e0b" filter="url(#logoGlowLg)"/>
+                        <!-- Central Node -->
                         <circle cx="12" cy="12" r="2.5" fill="url(#logoGradientLg)" filter="url(#logoGlowLg)"/>
                         <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
                     </svg>
@@ -241,8 +253,29 @@
                     Book a Free Consultation
                 </button>
             </div>
+
+            <!-- Live System Monitor -->
+            <div id="system-monitor" class="mt-8 max-w-4xl mx-auto glass-card p-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-gray-300">
+                    <div class="flex items-center justify-center gap-3 relative">
+                        <div class="w-3 h-3 bg-green-400 rounded-full absolute opacity-75 animate-ping"></div>
+                        <div class="w-3 h-3 bg-green-400 rounded-full relative"></div>
+                        <span class="font-mono text-xs sm:text-sm">SYSTEMS OPERATIONAL</span>
+                    </div>
+                    <div class="font-mono text-xs sm:text-sm">
+                        <span>PING: </span><span id="ping-status">--ms</span>
+                    </div>
+                    <div class="font-mono text-xs sm:text-sm">
+                        <span>THROUGHPUT: </span><span id="throughput-status">-.-- Gbps</span>
+                    </div>
+                    <div class="font-mono text-xs sm:text-sm">
+                        <span id="local-time">--:--:--</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Animated Stats Section -->
-            <div id="stats-section" class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+            <div id="stats-section" class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
                 <div class="glass-card p-6 text-center">
                     <h3 class="text-4xl font-extrabold" data-target="150">0</h3>
                     <p class="text-gray-300 mt-2">Happy Clients</p>
@@ -618,7 +651,7 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             let typed;
-            let statsObserver;
+            let statsObserver = null; // Initialize to null for robust creation
 
             function showPage(pageId) {
                 sections.forEach(section => {
@@ -649,7 +682,7 @@
             }
 
             function initTypingAnimation() {
-                if (document.getElementById('typed')) {
+                if (document.getElementById('typed') && !typed) {
                      typed = new Typed('#typed', {
                         strings: ['Solving Slow Wi-Fi.', 'Securing Your Network.', 'Fixing Device Headaches.', 'Your Tech Support Solution.'],
                         typeSpeed: 50,
@@ -690,20 +723,23 @@
                 updateCount();
             }
             
+            // FIX: Rewritten for stability. Observer is created only once.
             function observeStats() {
                 const statsSection = document.getElementById('stats-section');
                 if (!statsSection) return;
 
-                statsObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.querySelectorAll('[data-target]').forEach(el => {
-                                animateStats(el);
-                            });
-                            statsObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.5 });
+                if (!statsObserver) {
+                    statsObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.querySelectorAll('[data-target]').forEach(el => {
+                                    animateStats(el);
+                                });
+                                observer.unobserve(entry.target); // Use the observer from callback
+                            }
+                        });
+                    }, { threshold: 0.5 });
+                }
                 
                 statsObserver.observe(statsSection);
             }
@@ -718,6 +754,33 @@
                     slider.style.transform = `translateX(-${currentIndex * 100}%)`;
                 }, 5000);
             }
+
+            // Live System Monitor
+            function updateSystemMonitor() {
+                const pingEl = document.getElementById('ping-status');
+                const throughputEl = document.getElementById('throughput-status');
+                const timeEl = document.getElementById('local-time');
+
+                if (pingEl) {
+                    pingEl.textContent = `${Math.floor(Math.random() * 20) + 5}ms`;
+                }
+                if (throughputEl) {
+                    throughputEl.textContent = `${(Math.random() * 0.5 + 1).toFixed(2)} Gbps`;
+                }
+                if (timeEl) {
+                    const now = new Date();
+                    const options = {
+                        timeZone: 'America/Toronto',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    };
+                    timeEl.textContent = `${now.toLocaleTimeString('en-CA', options)} EDT`;
+                }
+            }
+            updateSystemMonitor();
+            setInterval(updateSystemMonitor, 1500);
 
             // Gemini AI Troubleshooter Logic
             const getDiagnosisBtn = document.getElementById('get-diagnosis-btn');
